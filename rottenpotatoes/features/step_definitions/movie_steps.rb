@@ -4,7 +4,7 @@ Given /the following movies exist/ do |movies_table|
   movies_table.hashes.each do |movie|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that movie to the database here.
-    Movie.create(title: movie[:title], rating: movie[:rating], release_date: movie[:release_date])
+    Movie.create(:title => movie[:title], :rating => movie[:rating], :release_date => movie[:release_date])
   end
 end
 
@@ -42,6 +42,5 @@ end
 Then /I should see all the movies/ do
   # Make sure that all the movies in the app are visible in the table
   # puts page.body
-  # (page.find('[@id=movies]').count == Movie.count).should be true
   expect(page).to have_xpath("//tr", :count => 11)
 end
